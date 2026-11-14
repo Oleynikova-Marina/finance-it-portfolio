@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local private configuration and credentials
+config.py
+**/config.py
+.env
+.env.*
