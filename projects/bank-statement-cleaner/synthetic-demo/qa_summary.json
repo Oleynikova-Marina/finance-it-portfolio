@@ -1,0 +1,19 @@
+{
+  "project": "Synthetic bank statement cleanup demo",
+  "all_data_synthetic": true,
+  "cases": {
+    "BANK1": {
+      "passed": 11,
+      "total": 11,
+      "result": "PASS"
+    },
+    "BANK2": {
+      "passed": 12,
+      "total": 12,
+      "result": "PASS"
+    }
+  },
+  "overall_passed": 23,
+  "overall_total": 23,
+  "overall_result": "PASS"
+}
