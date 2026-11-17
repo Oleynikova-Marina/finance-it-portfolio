@@ -1,0 +1,28 @@
+{
+  "case": "BANK1",
+  "date": "14.11.2026",
+  "data_type": "synthetic",
+  "script": "clean_bank1.py",
+  "checks": {
+    "source_file_present": true,
+    "output_file_present": true,
+    "source_and_output_open": true,
+    "opening_balance_cell_cleared": true,
+    "only_expected_transactions_retained": true,
+    "debit_rows_removed": true,
+    "internal_transfer_removed": true,
+    "operations_count_row_removed": true,
+    "totals_removed": true,
+    "merged_header_preserved": true,
+    "xlsx_container_integrity": true
+  },
+  "passed": 11,
+  "total": 11,
+  "result": "PASS",
+  "details": {
+    "retained_documents": ["1001", "1004"],
+    "retained_credit_total": 505000.0,
+    "removed_debit_total": 2140.0,
+    "removed_internal_transfer": 50000.0
+  }
+}
