@@ -1,0 +1,32 @@
+{
+  "case": "BANK2",
+  "date": "14.11.2026",
+  "data_type": "synthetic",
+  "script": "clean_bank2.py",
+  "checks": {
+    "source_file_present": true,
+    "output_file_present": true,
+    "source_and_output_open": true,
+    "source_outgoing_balance_corrected": true,
+    "source_balance_reconciles": true,
+    "opening_balance_cell_cleared": true,
+    "only_expected_transactions_retained": true,
+    "retained_rows_are_credit_only": true,
+    "internal_transfer_removed": true,
+    "outgoing_balance_row_removed": true,
+    "rows_after_outgoing_removed": true,
+    "xlsx_container_integrity": true
+  },
+  "passed": 12,
+  "total": 12,
+  "result": "PASS",
+  "details": {
+    "opening_balance": 875000.0,
+    "credits_total": 441000.0,
+    "debits_total": 48200.0,
+    "calculated_outgoing_balance": 1267800.0,
+    "source_outgoing_balance": 1267800.0,
+    "retained_documents": ["ПЛ-2001", "ПЛ-2004"],
+    "retained_credit_total": 316000.0
+  }
+}
