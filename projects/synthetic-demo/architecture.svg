@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
 <defs><style>
-.bg{fill:#f7f9fc}.title{font:700 30px Arial,sans-serif;fill:#172b4d}.sub{font:16px Arial,sans-serif;fill:#52627a}
+.bg{fill:#f7f9fc}.title{font:700 90px Arial,sans-serif;fill:#172b4d}.sub{font:48px Arial,sans-serif;fill:#52627a}
 .box{fill:#fff;stroke:#8aa0bd;stroke-width:2}.blue{fill:#eaf2ff;stroke:#3973c6}.green{fill:#e9f7ef;stroke:#32945f}.violet{fill:#f2edff;stroke:#8063c7}.orange{fill:#fff3e5;stroke:#d78a32}
-.h{font:700 19px Arial,sans-serif;fill:#17345c}.t{font:15px Arial,sans-serif;fill:#34445c}.small{font:13px Arial,sans-serif;fill:#66758a}
+.h{font:700 57px Arial,sans-serif;fill:#17345c}.t{font:45px Arial,sans-serif;fill:#34445c}.small{font:39px Arial,sans-serif;fill:#66758a}
 .arrow{stroke:#536985;stroke-width:3;fill:none;marker-end:url(#arr)}
 </style><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#536985"/></marker></defs>
 <rect class="bg" width="1400" height="760"/>
