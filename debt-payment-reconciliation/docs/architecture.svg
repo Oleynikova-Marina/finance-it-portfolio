@@ -62,7 +62,7 @@
   <text class="body" x="900" y="790" text-anchor="middle">Юрлицо · дата оплаты по плану · расчётный счёт</text>
   <path class="arrow" d="M900 615 V685"/>
 
-  <rect class="box green" x="570" y="875" width="660" height="125"/>
+  <rect class="box green" x="520" y="875" width="760" height="125"/>
   <text class="head" x="900" y="925" text-anchor="middle">Сопоставление с банковскими платежами</text>
   <text class="body" x="900" y="970" text-anchor="middle">Сумма · юрлицо · город в назначении платежа</text>
   <path class="arrow" d="M900 830 V875"/>
@@ -70,8 +70,8 @@
   <!-- Решение -->
   <path class="arrow" d="M900 1000 V1030"/>
   <polygon points="900,1030 1070,1110 900,1190 730,1110" fill="#fff4df" stroke="#c58b2b" stroke-width="3"/>
-  <text class="head" x="900" y="1102" text-anchor="middle">Сколько найдено</text>
-  <text class="small" x="900" y="1138" text-anchor="middle">совпадений?</text>
+  <text class="head" x="900" y="1102" text-anchor="middle">Результат</text>
+  <text class="head" x="900" y="1138" text-anchor="middle">сопоставления</text>
 
   <!-- Три листа результата: одинаковые размеры, ровная базовая линия и интервалы -->
   <rect class="box green" x="70" y="1260" width="440" height="190"/>
@@ -85,12 +85,12 @@
   <text class="head" x="900" y="1348" text-anchor="middle">Лист total</text>
   <text class="body" x="900" y="1408" text-anchor="middle">Итоговая аналитика по городам</text>
 
-  <rect class="box amber" x="1290" y="1260" width="440" height="190"/>
+  <rect class="box amber" x="1250" y="1260" width="520" height="210"/>
   <text class="head" x="1510" y="1305" text-anchor="middle">Рабочая книга Excel</text>
   <text class="head" x="1510" y="1348" text-anchor="middle">Лист send</text>
-  <text class="body" x="1510" y="1392" text-anchor="middle">Группы с однозначно найденными</text>
-  <text class="body" x="1510" y="1425" text-anchor="middle">совпадениями для формирования писем</text>
-  <text class="body" x="1510" y="1455" text-anchor="middle">в Outlook</text>
+  <text class="body" x="1510" y="1390" text-anchor="middle">Группы с однозначно найденными</text>
+  <text class="body" x="1510" y="1425" text-anchor="middle">совпадениями для формирования</text>
+  <text class="body" x="1510" y="1460" text-anchor="middle">писем в Outlook</text>
 
   <!-- Ветви решения не пересекают ромб и входят в свои блоки -->
   <path class="arrow" d="M730 1110 H600 V1230 H290 V1260"/>
@@ -98,7 +98,7 @@
   <path class="arrow" d="M1070 1110 H1200 V1230 H1510 V1260"/>
 
   <!-- Нижний ряд: резервная копия -->
-  <path class="line" d="M290 1450 V1510 M900 1450 V1510 M1510 1450 V1510"/>
+  <path class="line" d="M290 1450 V1510 M900 1450 V1510 M1510 1470 V1510"/>
   <path class="line" d="M290 1510 H1510"/>
   <path class="arrow" d="M900 1510 V1550"/>
 
