@@ -70,8 +70,8 @@
   <!-- Решение -->
   <path class="arrow" d="M900 1000 V1030"/>
   <polygon points="900,1030 1070,1110 900,1190 730,1110" fill="#fff4df" stroke="#c58b2b" stroke-width="3"/>
-  <text class="head" x="900" y="1102" text-anchor="middle">Результат</text>
-  <text class="head" x="900" y="1138" text-anchor="middle">сопоставления</text>
+  <text class="head" x="900" y="1088" text-anchor="middle">Результат</text>
+  <text class="head" x="900" y="1124" text-anchor="middle">сопоставления</text>
 
   <!-- Три листа результата: одинаковые размеры, ровная базовая линия и интервалы -->
   <rect class="box green" x="70" y="1260" width="440" height="190"/>
