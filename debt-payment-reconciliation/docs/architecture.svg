@@ -66,8 +66,8 @@
 <path d="M1095 850 H1180" class="line"/>
 
 <!-- Расширенное итоговое поле: подписи разбиты на две строки -->
-<path d="M255 910 V950 H800 V965" class="line"/>
-<path d="M1345 910 V950 H800" class="line"/>
+<path d="M800 950 V965" class="line"/>
+
 <rect x="300" y="965" width="1000" height="105" rx="16" class="result"/>
 <text x="800" y="1007" text-anchor="middle" class="t">Обновление аналитики total · создание резервной копии</text>
 <text x="800" y="1042" text-anchor="middle" class="s">Сохранение рабочей книги XLSM через Excel COM</text>
