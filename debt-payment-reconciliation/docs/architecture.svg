@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1300" viewBox="0 0 1800 1300" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1500" viewBox="0 0 1800 1500" role="img" aria-labelledby="title desc">
   <title id="title">Архитектура автоматизации задолженности и сверки банковских платежей</title>
   <desc id="desc">Платёжный план и банковские выписки подготавливаются и загружаются в рабочую книгу. Задолженность группируется и сопоставляется с платежами. Однозначные совпадения переносятся в send, остальные остаются в data для ручной проверки. Оба результата ведут к обновлению аналитики total и сохранению книги.</desc>
   <defs>
@@ -22,11 +22,11 @@
     </style>
   </defs>
 
-  <rect class="bg" width="1800" height="1300"/>
+  <rect class="bg" width="1800" height="1500"/>
   <text class="title" x="900" y="78" text-anchor="middle">Автоматизация задолженности и сверки платежей</text>
   <text class="subtitle" x="900" y="124" text-anchor="middle">Подготовка данных → обработка выписок → сопоставление → результаты и аналитика</text>
 
-  <!-- Источники и рабочая книга -->
+  <!-- Источники -->
   <rect class="box blue" x="70" y="185" width="440" height="165"/>
   <text class="head" x="290" y="238" text-anchor="middle">Платёжный план Excel</text>
   <text class="body" x="290" y="288" text-anchor="middle">Исходные обязательства</text>
@@ -56,7 +56,7 @@
   <path class="arrow" d="M290 350 V435"/>
   <path class="arrow" d="M900 350 V435"/>
   <path class="arrow" d="M510 525 H590 V390 H1510 V350"/>
-  <path class="arrow" d="M1510 350 V390 H900 V435"/>
+  <path class="arrow" d="M1120 525 H1200 V390 H1510 V350"/>
 
   <!-- Группировка и сопоставление -->
   <rect class="box purple" x="570" y="685" width="660" height="145"/>
@@ -69,27 +69,28 @@
   <text class="body" x="900" y="970" text-anchor="middle">Сумма · юрлицо · город в назначении платежа</text>
   <path class="arrow" d="M900 830 V875"/>
 
-  <!-- Решение и два результата -->
+  <!-- Решение и результаты -->
   <path class="arrow" d="M900 1000 V1030"/>
   <polygon points="900,1030 1070,1110 900,1190 730,1110" fill="#fff4df" stroke="#c58b2b" stroke-width="3"/>
   <text class="head" x="900" y="1102" text-anchor="middle">Сколько найдено</text>
   <text class="small" x="900" y="1138" text-anchor="middle">совпадений?</text>
 
-  <rect class="box green" x="70" y="1035" width="500" height="150"/>
-  <text class="head" x="320" y="1090" text-anchor="middle">Ровно одно совпадение</text>
-  <text class="body" x="320" y="1140" text-anchor="middle">Перенос группы в лист send</text>
+  <rect class="box green" x="70" y="1040" width="500" height="160"/>
+  <text class="head" x="320" y="1098" text-anchor="middle">Ровно одно совпадение</text>
+  <text class="body" x="320" y="1150" text-anchor="middle">Перенос группы в лист send</text>
 
-  <rect class="box amber" x="1230" y="1035" width="500" height="150"/>
-  <text class="head" x="1480" y="1090" text-anchor="middle">Нет или несколько совпадений</text>
-  <text class="body" x="1480" y="1140" text-anchor="middle">Оставить в data для проверки</text>
+  <rect class="box amber" x="1230" y="1040" width="500" height="160"/>
+  <text class="head" x="1480" y="1098" text-anchor="middle">Нет или несколько совпадений</text>
+  <text class="body" x="1480" y="1150" text-anchor="middle">Оставить в data для проверки</text>
 
   <path class="arrow" d="M730 1110 H570"/>
   <path class="arrow" d="M1070 1110 H1230"/>
 
-  <!-- Оба результата сходятся на линии; стрелка из середины направлена в итоговый блок -->
-  <path class="line" d="M320 1185 V1220 H1480 V1185"/>
-  <path class="arrow" d="M900 1220 V1245"/>
+  <!-- Результаты объединяются ниже блоков; центральная стрелка ведёт в итоговый блок -->
+  <path class="line" d="M320 1200 V1240 H1480 V1200"/>
+  <path class="arrow" d="M900 1240 V1280"/>
 
-  <rect class="box green" x="400" y="1245" width="1000" height="0" opacity="0"/>
-  <rect class="box green" x="400" y="1245" width="1000" height="0" opacity="0"/>
+  <rect class="box green" x="400" y="1280" width="1000" height="150"/>
+  <text class="head" x="900" y="1340" text-anchor="middle">Обновление аналитики total</text>
+  <text class="body" x="900" y="1390" text-anchor="middle">Создание резервной копии · сохранение книги XLSM через Excel COM</text>
 </svg>
