@@ -76,16 +76,19 @@
 
   <!-- Три листа результата в одной строке -->
   <rect class="box green" x="70" y="1160" width="440" height="150"/>
-  <text class="head" x="290" y="1218" text-anchor="middle">Лист data</text>
+  <text class="head" x="290" y="1200" text-anchor="middle">Рабочая книга Excel</text>
+  <text class="head" x="290" y="1238" text-anchor="middle">Лист data</text>
   <text class="body" x="290" y="1250" text-anchor="middle">Актуальные очищенные данные</text>
   <text class="body" x="290" y="1282" text-anchor="middle">для дальнейшего анализа</text>
 
   <rect class="box purple" x="680" y="1160" width="440" height="150"/>
-  <text class="head" x="900" y="1218" text-anchor="middle">Лист total</text>
+  <text class="head" x="900" y="1200" text-anchor="middle">Рабочая книга Excel</text>
+  <text class="head" x="900" y="1238" text-anchor="middle">Лист total</text>
   <text class="body" x="900" y="1268" text-anchor="middle">Итоговая аналитика по городам</text>
 
   <rect class="box amber" x="1290" y="1160" width="440" height="150"/>
-  <text class="head" x="1510" y="1218" text-anchor="middle">Лист send</text>
+  <text class="head" x="1510" y="1200" text-anchor="middle">Рабочая книга Excel</text>
+  <text class="head" x="1510" y="1238" text-anchor="middle">Лист send</text>
   <text class="body" x="1510" y="1250" text-anchor="middle">Группы с однозначно найденными</text>
   <text class="body" x="1510" y="1282" text-anchor="middle">совпадениями для формирования писем в Outlook</text>
 
