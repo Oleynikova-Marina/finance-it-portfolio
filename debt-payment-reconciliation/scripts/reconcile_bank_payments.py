@@ -37,7 +37,7 @@ RESULT_SHEET = "send"
 TOTAL_SHEET = "total"
 TREEMAP_SHEET = "treemap"  # существующий лист; сохраняем отдельно от total
 
-# Проверяем эти юрлица; для каждого ищем банковские выписки в обеих папках AG и PS.
+# Проверяем заданные юрлица по выпискам из папок bank_1 и bank_2.
 # Замените примеры на условные названия организаций из вашей тестовой книги.
 LEGAL_ENTITY_FILTERS = ("КОМПАНИЯ 1", "КОМПАНИЯ 2")
 
@@ -206,7 +206,7 @@ def update_total_sheet(wb, data_ws, c_rs, c_debt, header_row, report_date):
             if city and city.upper() not in {'ГОРОД', 'ИТОГО', 'ДАННЫЕ ПО ЗАДОЛЖЕННОСТИ ПО ГОРОДАМ, ТЫС.РУБ.'}:
                 old_cities[r] = city
         looks_like_total = (
-            str(ws.cell(1, 1).value or '').strip().casefold() == 'промет по городам, тыс.руб.'
+            str(ws.cell(1, 1).value or '').strip().casefold() == 'данные по городам, тыс.руб.'
             and bool(old_dates) and bool(old_cities)
         )
         history_cols = []
@@ -369,13 +369,13 @@ def find_plan_file():
 
 
 def load_bank_rows(bank_file):
-    """Читает выписки двух форматов: AG (многострочная шапка) и PS (обычная шапка)."""
+    """Читает два варианта структуры выписок: многострочную и обычную шапку."""
     keep_vba = bank_file.suffix.lower() == ".xlsm"
     wb = openpyxl.load_workbook(bank_file, data_only=True, read_only=False, keep_vba=keep_vba)
     found = []
     try:
         for ws in wb.worksheets:
-            # Надёжнее определять юрлицо по папке выписки: в формате AG ячейка A3
+            # Надёжнее определять юрлицо по папке выписки: в одном из форматов ячейка A3
             # может содержать заголовок отчёта, а не название организации.
             folder_name = bank_file.parent.name.casefold()
             if folder_name == "bank_1":
@@ -394,7 +394,7 @@ def load_bank_rows(bank_file):
                  "Основание операции (назначение платежа) / Payment details"],
                 BANK_HEADER_SCAN_ROWS,
             )
-            # Универсальное распознавание обычной шапки PS и многострочной шапки AG.
+            # Универсальное распознавание обычной и многострочной шапки.
             if header_row is None:
                 for r in range(1, min(ws.max_row, BANK_HEADER_SCAN_ROWS) + 1):
                     row_text = " | ".join(norm(ws.cell(r, c).value) for c in range(1, ws.max_column + 1))
@@ -406,7 +406,7 @@ def load_bank_rows(bank_file):
                         header_row = r
                         break
             if header_row is None:
-                # Запасной вариант для банковской выписки AG с нумерованными колонками.
+                # Запасной вариант для выписки с нумерованными колонками.
                 for r in range(1, min(ws.max_row, BANK_HEADER_SCAN_ROWS) + 1):
                     vals = [norm(ws.cell(r, c).value) for c in range(1, ws.max_column + 1)]
                     if any(v in ("9", "дебет", "дебет / debit") for v in vals) and ws.max_column >= 23:
@@ -431,7 +431,7 @@ def load_bank_rows(bank_file):
                             or "основание операции" in value or "payment details" in value):
                         col_purpose = c
 
-            # Фиксированные позиции — только резерв для прежнего формата AG.
+            # Фиксированные позиции — только резерв для прежнего формата выписки.
             if col_date is None and ws.max_column >= 3 and ws.max_column >= 23:
                 col_date = 3
             if col_inn is None and ws.max_column >= 23:
@@ -493,7 +493,7 @@ def main():
         and not p.name.startswith("~$")
     )
     if not bank_files:
-        raise RuntimeError("В папках AG и PS не найдено Excel-выписок.")
+        raise RuntimeError("В папках bank_1 и bank_2 не найдено Excel-выписок.")
 
     print(f"\nНайдено файлов выписок: {len(bank_files)}")
     bank_rows = []
