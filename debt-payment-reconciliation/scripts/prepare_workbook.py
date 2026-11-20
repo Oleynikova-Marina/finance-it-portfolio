@@ -12,6 +12,7 @@ DATA_START_ROW = 3
 NUMBER_COLUMNS = (10, 12)
 HIDDEN_COLUMNS = (3, 11, 13)
 GROUP_COLUMN = 2
+RS_CITY_COLUMN = 14  # N — поле «рс», из которого берётся название города
 
 # Более тёмный терракотовый оттенок
 DARK_TERRACOTTA = "8B3F2F"
@@ -347,12 +348,18 @@ def process_file(source_path, target_path):
             if not isinstance(cell, MergedCell):
                 cell.value = to_number(cell.value)
 
-    # 2. Скрыть столбцы 3, 11 и 13.
+    # 2. Очистить названия городов в столбце «рс» от служебных маркеров.
+    for row_idx in range(DATA_START_ROW, ws.max_row + 1):
+        cell = ws.cell(row=row_idx, column=RS_CITY_COLUMN)
+        if not isinstance(cell, MergedCell) and cell.value is not None:
+            cell.value = clean_rs_city(cell.value)
+
+    # 3. Скрыть столбцы 3, 11 и 13.
     for col_idx in HIDDEN_COLUMNS:
         letter = ws.cell(row=2, column=col_idx).column_letter
         ws.column_dimensions[letter].hidden = True
 
-    # 3. Сгруппировать строки по значениям столбца 2 в алфавитном порядке.
+    # 4. Сгруппировать строки по значениям столбца 2 в алфавитном порядке.
     last_row = ws.max_row
     last_col = ws.max_column
     if last_row >= DATA_START_ROW:
@@ -368,7 +375,7 @@ def process_file(source_path, target_path):
                 if not isinstance(cell, MergedCell):
                     cell.value = value
 
-    # 4. Сумма столбца 12 в L1.
+    # 5. Сумма столбца 12 в L1.
     total = sum(
         ws.cell(row=r, column=12).value
         for r in range(DATA_START_ROW, ws.max_row + 1)
