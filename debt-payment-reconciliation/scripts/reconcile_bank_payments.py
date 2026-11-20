@@ -654,8 +654,11 @@ def main():
             send_ws.merge_cells(start_row=total_row, start_column=1, end_row=total_row, end_column=10)
             label_cell = send_ws.cell(total_row, 1)
             label_cell.value = "ИТОГО по группе"
-            label_cell.alignment = copy(label_cell.alignment)
-            label_cell.alignment = label_cell.alignment.copy(horizontal="right")
+
+            alignment = copy(label_cell.alignment)
+            alignment.horizontal = "right"
+            label_cell.alignment = alignment
+
             # Сумма группы не записывается в H или N. Если колонка долга вне A:J и не N,
             # показываем её в исходной колонке долга.
             if c_debt not in (8, 14) and c_debt > 10:
