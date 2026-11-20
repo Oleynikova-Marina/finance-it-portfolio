@@ -73,17 +73,16 @@ def sort_key(value):
 
 
 def clean_rs_city(value):
-    """Убирает служебный префикс и нормализует отдельные названия городов."""
+    """Нормализует город из поля рс: удаляет служебные маркеры ОБЩИЙ и СОСЕНКИ."""
     if value is None:
         return ""
-    text = " ".join(str(value).replace("\u00a0", " ").split()).strip()
     import re
-    text = re.sub(r"^\s*ОБЩ(?:ИЙ|ЕЕ|ЕЁ)?\s*[,;:—–-]?\s*", "", text, flags=re.IGNORECASE)
+
+    text = " ".join(str(value).replace("\u00a0", " ").split()).strip()
+    text = re.sub(r"^\s*ОБЩИЙ\s*[,;:—–-]?\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?:\s*[-–—]\s*|\s+)СОСЕНКИ\s*$", "", text, flags=re.IGNORECASE)
     text = text.strip(" ,;:-—–")
-    # В исходных данных это название должно отображаться коротко.
-    if text.casefold().replace(" ", "") == "москва-сосенки":
-        return "МОСКВА"
-    return text
+    return text.upper()
 
 
 def make_treemap_dashboard(workbook, data_ws):
@@ -422,7 +421,7 @@ def process_file(source_path, target_path):
 
 
 def main():
-    print("=== PROMET: перенос данных, обработка и дашборд ===", flush=True)
+    print("=== ПОДГОТОВКА РАБОЧЕЙ КНИГИ ===", flush=True)
     print(f"Источник: {SOURCE_FOLDER}", flush=True)
     print(f"Назначение: {TARGET_FOLDER}", flush=True)
 
@@ -450,7 +449,7 @@ def main():
         print(f"В папке input ожидался один Excel-файл, найдено: {len(source_files)}.")
         return
     if len(target_files) != 1:
-        print(f"В папке diff ожидался один Excel-файл, найдено: {len(target_files)}.")
+        print(f"В папке working ожидался один Excel-файл, найдено: {len(target_files)}.")
         return
 
     print(f"Исходный файл: {source_files[0].name}", flush=True)
