@@ -147,19 +147,16 @@ def cell_value(ws, row, col):
 
 
 def city_from_rs(value):
-    """Возвращает часть после 'ОБЩИЙ,'; регистр не важен."""
-    s = str(value or "").strip()
-    m = re.search(r"ОБЩИЙ\s*,\s*(.+)$", s, flags=re.IGNORECASE)
-    return m.group(1).strip() if m else s
+    """Нормализует город из поля рс: удаляет служебные маркеры ОБЩИЙ и СОСЕНКИ."""
+    city = str(value or "").replace("\u00a0", " ").strip()
+    city = re.sub(r"^\s*ОБЩИЙ\s*[,;:—–-]?\s*", "", city, flags=re.IGNORECASE)
+    city = re.sub(r"(?:\s*[-–—]\s*|\s+)СОСЕНКИ\s*$", "", city, flags=re.IGNORECASE)
+    return re.sub(r"\s+", " ", city).strip(" ,;:-—–").upper()
 
 
 def total_city_from_rs(value):
-    """Город для листа total: удаляет маркер ОБЩИЙ, и нормализует Москву-Сосенки."""
-    city = str(value or "").strip()
-    city = re.sub(r"^\s*ОБЩИЙ\s*,\s*", "", city, flags=re.IGNORECASE).strip()
-    city = re.sub(r"\s+", " ", city).strip().upper()
-    city = re.sub(r"^МОСКВА\s*[-–—]\s*СОСЕНКИ$", "МОСКВА", city, flags=re.IGNORECASE)
-    return city
+    """Возвращает нормализованное название города для итогового листа."""
+    return city_from_rs(value)
 
 
 def date_from_filename(path: Path):
