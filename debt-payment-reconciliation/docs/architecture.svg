@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1500" viewBox="0 0 1800 1500" role="img" aria-labelledby="title desc">
   <title id="title">Архитектура автоматизации задолженности и сверки банковских платежей</title>
-  <desc id="desc">Платёжный план и банковские выписки подготавливаются и загружаются в рабочую книгу. Задолженность группируется и сопоставляется с платежами. Однозначные совпадения переносятся в send, остальные остаются в data для ручной проверки. Оба результата ведут к обновлению аналитики total и сохранению книги.</desc>
+  <desc id="desc">Платёжный план и банковские выписки подготавливаются и обрабатываются. Задолженность группируется и сопоставляется с платежами. Результаты записываются в три листа рабочей книги: data, total и send. Внизу показано создание резервной копии.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1,1 L11,6 L1,11 Z" fill="#52657a"/></marker>
     <style>
@@ -18,13 +18,12 @@
       .small{font:23px Arial,sans-serif;fill:#52657a}
       .arrow{fill:none;stroke:#52657a;stroke-width:4;marker-end:url(#arrow)}
       .line{fill:none;stroke:#52657a;stroke-width:4}
-      .dash{fill:none;stroke:#8b9aad;stroke-width:3;stroke-dasharray:10 9}
     </style>
   </defs>
 
   <rect class="bg" width="1800" height="1500"/>
   <text class="title" x="900" y="78" text-anchor="middle">Автоматизация задолженности и сверки платежей</text>
-  <text class="subtitle" x="900" y="124" text-anchor="middle">Подготовка данных → обработка выписок → сопоставление → результаты и аналитика</text>
+  <text class="subtitle" x="900" y="124" text-anchor="middle">Подготовка данных → обработка выписок → сопоставление → обновление рабочей книги</text>
 
   <!-- Источники -->
   <rect class="box blue" x="70" y="185" width="440" height="165"/>
@@ -39,8 +38,8 @@
 
   <rect class="box blue" x="1290" y="185" width="440" height="165"/>
   <text class="head" x="1510" y="238" text-anchor="middle">Рабочая книга Excel</text>
-  <text class="body" x="1510" y="288" text-anchor="middle">Лист data</text>
-  <text class="small" x="1510" y="322" text-anchor="middle">Подготовленные данные</text>
+  <text class="body" x="1510" y="288" text-anchor="middle">Единый файл обработки</text>
+  <text class="small" x="1510" y="322" text-anchor="middle">Результат работы скрипта</text>
 
   <!-- Подготовка и загрузка -->
   <rect class="box purple" x="70" y="435" width="440" height="180"/>
@@ -69,28 +68,35 @@
   <text class="body" x="900" y="970" text-anchor="middle">Сумма · юрлицо · город в назначении платежа</text>
   <path class="arrow" d="M900 830 V875"/>
 
-  <!-- Решение и результаты -->
+  <!-- Решение -->
   <path class="arrow" d="M900 1000 V1030"/>
   <polygon points="900,1030 1070,1110 900,1190 730,1110" fill="#fff4df" stroke="#c58b2b" stroke-width="3"/>
   <text class="head" x="900" y="1102" text-anchor="middle">Сколько найдено</text>
   <text class="small" x="900" y="1138" text-anchor="middle">совпадений?</text>
 
-  <rect class="box green" x="70" y="1040" width="500" height="160"/>
-  <text class="head" x="320" y="1098" text-anchor="middle">Ровно одно совпадение</text>
-  <text class="body" x="320" y="1150" text-anchor="middle">Перенос группы в лист send</text>
+  <!-- Три листа результата в одной строке -->
+  <rect class="box green" x="70" y="1160" width="440" height="150"/>
+  <text class="head" x="290" y="1218" text-anchor="middle">Лист data</text>
+  <text class="body" x="290" y="1268" text-anchor="middle">Задолженность для проверки</text>
 
-  <rect class="box amber" x="1230" y="1040" width="500" height="160"/>
-  <text class="head" x="1480" y="1098" text-anchor="middle">Нет или несколько совпадений</text>
-  <text class="body" x="1480" y="1150" text-anchor="middle">Оставить в data для проверки</text>
+  <rect class="box purple" x="680" y="1160" width="440" height="150"/>
+  <text class="head" x="900" y="1218" text-anchor="middle">Лист total</text>
+  <text class="body" x="900" y="1268" text-anchor="middle">Итоговая аналитика по городам</text>
 
-  <path class="arrow" d="M730 1110 H570"/>
-  <path class="arrow" d="M1070 1110 H1230"/>
+  <rect class="box amber" x="1290" y="1160" width="440" height="150"/>
+  <text class="head" x="1510" y="1218" text-anchor="middle">Лист send</text>
+  <text class="body" x="1510" y="1268" text-anchor="middle">Однозначно найденные совпадения</text>
 
-  <!-- Результаты объединяются ниже блоков; центральная стрелка ведёт в итоговый блок -->
-  <path class="line" d="M320 1200 V1240 H1480 V1200"/>
-  <path class="arrow" d="M900 1240 V1280"/>
+  <!-- Ветви решения: data — нет/несколько, send — ровно одно; total обновляется в рамках обработки -->
+  <path class="arrow" d="M730 1110 H600 V1135 H290 V1160"/>
+  <path class="arrow" d="M1070 1110 H1200 V1135 H1510 V1160"/>
+  <path class="arrow" d="M900 1110 V1160"/>
 
-  <rect class="box green" x="400" y="1280" width="1000" height="150"/>
-  <text class="head" x="900" y="1340" text-anchor="middle">Обновление аналитики total</text>
-  <text class="body" x="900" y="1390" text-anchor="middle">Создание резервной копии · сохранение книги XLSM через Excel COM</text>
+  <!-- Три листа сходятся к резервному копированию -->
+  <path class="line" d="M290 1310 V1350 M900 1310 V1350 M1510 1310 V1350"/>
+  <path class="line" d="M290 1350 H1510"/>
+  <path class="arrow" d="M900 1350 V1390"/>
+
+  <rect class="box blue" x="400" y="1390" width="1000" height="90"/>
+  <text class="head" x="900" y="1448" text-anchor="middle">Создание резервной копии рабочей книги XLSM</text>
 </svg>
