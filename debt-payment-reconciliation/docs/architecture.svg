@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
+<title id="title">Архитектура автоматизации задолженности и сверки банковских платежей</title>
+<desc id="desc">Платёжный план и две банковские выписки проходят подготовку, загрузку, группировку и сопоставление. Однозначные совпадения попадают в реестр send, остальные остаются на ручную проверку в data. Затем обновляется аналитика total, создаётся резервная копия и книга сохраняется через Excel COM.</desc>
+<defs>
+  <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#52657a"/></marker>
+  <style>
+    .h{font:700 30px Arial,sans-serif;fill:#172b4d}.sub{font:18px Arial,sans-serif;fill:#52657a}
+    .t{font:700 21px Arial,sans-serif;fill:#172b4d}.s{font:17px Arial,sans-serif;fill:#334e68}
+    .box{fill:#f3f7fb;stroke:#6b8299;stroke-width:2.5}.input{fill:#edf6ff;stroke:#4d83b5;stroke-width:2.5}
+    .process{fill:#f3f7fb;stroke:#6b8299;stroke-width:2.5}.result{fill:#edf8f2;stroke:#4c9270;stroke-width:2.5}
+    .manual{fill:#fff7e8;stroke:#c18a35;stroke-width:2.5}.line{stroke:#52657a;stroke-width:3;fill:none;marker-end:url(#arrow)}
+  </style>
+</defs>
+<rect width="1600" height="1050" fill="#ffffff"/>
+<text x="800" y="58" text-anchor="middle" class="h">Архитектура проекта</text>
+<text x="800" y="91" text-anchor="middle" class="sub">Автоматизация обработки задолженности и сверки банковских платежей</text>
+
+<rect x="70" y="145" width="330" height="110" rx="16" class="input"/>
+<text x="235" y="188" text-anchor="middle" class="t">Платёжный план Excel</text>
+<text x="235" y="222" text-anchor="middle" class="s">Исходные обязательства</text>
+
+<rect x="635" y="125" width="330" height="110" rx="16" class="input"/>
+<text x="800" y="168" text-anchor="middle" class="t">Банковские выписки</text>
+<text x="800" y="202" text-anchor="middle" class="s">Источник 1 и источник 2</text>
+
+<rect x="1200" y="145" width="330" height="110" rx="16" class="input"/>
+<text x="1365" y="188" text-anchor="middle" class="t">Рабочая книга Excel</text>
+<text x="1365" y="222" text-anchor="middle" class="s">Лист data · подготовленные данные</text>
+
+<path d="M235 255 V315 H365" class="line"/>
+<rect x="365" y="285" width="330" height="105" rx="16" class="process"/>
+<text x="530" y="326" text-anchor="middle" class="t">Подготовка данных</text>
+<text x="530" y="360" text-anchor="middle" class="s">debt.py · перенос и форматирование</text>
+<path d="M695 337 H1365 V255" class="line"/>
+
+<path d="M800 235 V310" class="line"/>
+<rect x="635" y="310" width="330" height="105" rx="16" class="process"/>
+<text x="800" y="351" text-anchor="middle" class="t">Загрузка и разбор выписок</text>
+<text x="800" y="385" text-anchor="middle" class="s">Определение полей и фильтрация</text>
+
+<path d="M1365 255 V465 H1095" class="line"/>
+<rect x="760" y="455" width="335" height="110" rx="16" class="process"/>
+<text x="927" y="498" text-anchor="middle" class="t">Группировка задолженности</text>
+<text x="927" y="532" text-anchor="middle" class="s">Юрлицо + дата плана + расчётный счёт</text>
+<path d="M800 415 V455" class="line"/>
+
+<rect x="760" y="625" width="335" height="100" rx="16" class="process"/>
+<text x="927" y="666" text-anchor="middle" class="t">Сопоставление</text>
+<text x="927" y="700" text-anchor="middle" class="s">Сумма · юрлицо · город в назначении</text>
+<path d="M927 565 V625" class="line"/>
+
+<path d="M927 725 V770" class="line"/>
+<polygon points="927,770 1095,850 927,930 759,850" fill="#fff7e8" stroke="#c18a35" stroke-width="2.5"/>
+<text x="927" y="842" text-anchor="middle" class="t">Сколько найдено</text>
+<text x="927" y="873" text-anchor="middle" class="s">подходящих совпадений?</text>
+
+<rect x="90" y="795" width="330" height="115" rx="16" class="result"/>
+<text x="255" y="839" text-anchor="middle" class="t">Ровно одно совпадение</text>
+<text x="255" y="875" text-anchor="middle" class="s">Перенос группы в лист send</text>
+<path d="M759 850 H420" class="line"/>
+
+<rect x="1180" y="795" width="330" height="115" rx="16" class="manual"/>
+<text x="1345" y="839" text-anchor="middle" class="t">Нет или несколько совпадений</text>
+<text x="1345" y="875" text-anchor="middle" class="s">Оставить в data для проверки</text>
+<path d="M1095 850 H1180" class="line"/>
+
+<path d="M255 910 V970 H800 V990" class="line"/>
+<path d="M1345 910 V970 H800" class="line"/>
+<rect x="570" y="980" width="460" height="58" rx="14" class="result"/>
+<text x="800" y="1017" text-anchor="middle" class="t">Обновление total · резервная копия · сохранение XLSM через Excel COM</text>
+</svg>
