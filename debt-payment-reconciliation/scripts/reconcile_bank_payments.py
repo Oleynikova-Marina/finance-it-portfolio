@@ -524,6 +524,15 @@ def main():
         if not all((c_entity, c_date, c_debt, c_rs)):
             raise RuntimeError("Не удалось определить все необходимые столбцы на листе data.")
 
+        # Приводим отображаемое значение города к единому виду на листе data.
+        # Это не меняет ключевые реквизиты и сумму, только очищает текст поля рс.
+        for r in range(header_row + 1, data_ws.max_row + 1):
+            cell = data_ws.cell(r, c_rs)
+            if not isinstance(cell, MergedCell) and cell.value is not None:
+                cleaned_city = city_from_rs(cell.value)
+                if cleaned_city:
+                    cell.value = cleaned_city
+
         groups = defaultdict(list)
         for r in range(header_row + 1, data_ws.max_row + 1):
             entity = cell_value(data_ws, r, c_entity)
@@ -569,11 +578,19 @@ def main():
             se = find_col(scols, "Юрлицо")
             sd = find_col(scols, "Дата оплаты по плану до")
             sr = find_col(scols, "рс")
+            # Очищаем также ранее перенесённые строки на send, чтобы старые
+            # значения вида "ОБЩИЙ, МОСКВА" отображались как "МОСКВА".
             # Группа распознаётся по каждой строке данных на send.
             for rr in range(send_header + 1, send_ws.max_row + 1):
                 e = cell_value(send_ws, rr, se)
                 d = date_key(cell_value(send_ws, rr, sd))
-                rs = cell_value(send_ws, rr, sr)
+                rs_cell = send_ws.cell(rr, sr) if sr else None
+                rs = rs_cell.value if rs_cell is not None else None
+                if rs_cell is not None and not isinstance(rs_cell, MergedCell) and rs:
+                    cleaned_city = city_from_rs(rs)
+                    if cleaned_city:
+                        rs_cell.value = cleaned_city
+                        rs = cleaned_city
                 if e is not None and d is not None and rs:
                     existing_keys.add((str(e).strip(), d, str(rs).strip()))
 
