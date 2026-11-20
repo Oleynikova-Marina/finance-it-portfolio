@@ -77,7 +77,8 @@
   <!-- Три листа результата в одной строке -->
   <rect class="box green" x="70" y="1160" width="440" height="150"/>
   <text class="head" x="290" y="1218" text-anchor="middle">Лист data</text>
-  <text class="body" x="290" y="1268" text-anchor="middle">Задолженность для проверки</text>
+  <text class="body" x="290" y="1250" text-anchor="middle">Актуальные очищенные данные</text>
+  <text class="body" x="290" y="1282" text-anchor="middle">для дальнейшего анализа</text>
 
   <rect class="box purple" x="680" y="1160" width="440" height="150"/>
   <text class="head" x="900" y="1218" text-anchor="middle">Лист total</text>
@@ -85,7 +86,8 @@
 
   <rect class="box amber" x="1290" y="1160" width="440" height="150"/>
   <text class="head" x="1510" y="1218" text-anchor="middle">Лист send</text>
-  <text class="body" x="1510" y="1268" text-anchor="middle">Однозначно найденные совпадения</text>
+  <text class="body" x="1510" y="1250" text-anchor="middle">Группы с однозначно найденными</text>
+  <text class="body" x="1510" y="1282" text-anchor="middle">совпадениями для формирования писем в Outlook</text>
 
   <!-- Ветви решения: data — нет/несколько, send — ровно одно; total обновляется в рамках обработки -->
   <path class="arrow" d="M730 1110 H600 V1135 H290 V1160"/>
