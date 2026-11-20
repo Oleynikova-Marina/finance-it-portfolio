@@ -65,8 +65,10 @@
 <text x="1345" y="875" text-anchor="middle" class="s">Оставить в data для проверки</text>
 <path d="M1095 850 H1180" class="line"/>
 
-<!-- Горизонтальная связь между блоками результатов; стрелка входит в центр второго блока -->
-<path d="M420 895 H1345" class="line"/>
+<!-- Оба результата сходятся на общей горизонтальной линии; из её середины стрелка ведёт к обновлению аналитики -->
+<path d="M255 910 V950 H1345 V910" stroke="#52657a" stroke-width="3" fill="none"/>
+<path d="M255 950 H800 M800 950 H1345" stroke="#52657a" stroke-width="3" fill="none"/>
+<path d="M800 950 V965" class="line"/>
 
 <rect x="300" y="965" width="1000" height="105" rx="16" class="result"/>
 <text x="800" y="1007" text-anchor="middle" class="t">Обновление аналитики total · создание резервной копии</text>
