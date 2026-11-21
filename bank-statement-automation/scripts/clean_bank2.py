@@ -4,9 +4,9 @@ import re
 
 from openpyxl import load_workbook
 
-ROOT = Path(__file__).resolve().parent
-SOURCE_FOLDER = ROOT / "BANK2" / "source"
-OUTPUT_FOLDER = ROOT / "BANK2" / "output"
+ROOT = Path(__file__).resolve().parent.parent
+SOURCE_FOLDER = ROOT / "test-data" / "BANK2" / "source"
+OUTPUT_FOLDER = ROOT / "test-data" / "BANK2" / "output"
 OUTPUT_PREFIX = "BANK2_cleaned_"
 DATE_CELL = "F2"
 TRANSFER_PHRASE = "Перевод средств между своими счетами"

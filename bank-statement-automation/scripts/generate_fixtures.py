@@ -6,12 +6,12 @@ from pathlib import Path
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 DATE = datetime(2026, 11, 14)
 
 
 def create_bank1() -> None:
-    folder = ROOT / "BANK1" / "source"
+    folder = ROOT / "test-data" / "BANK1" / "source"
     folder.mkdir(parents=True, exist_ok=True)
     wb = Workbook()
     ws = wb.active
@@ -60,7 +60,7 @@ def create_bank1() -> None:
 
 
 def create_bank2() -> None:
-    folder = ROOT / "BANK2" / "source"
+    folder = ROOT / "test-data" / "BANK2" / "source"
     folder.mkdir(parents=True, exist_ok=True)
     wb = Workbook()
     ws = wb.active

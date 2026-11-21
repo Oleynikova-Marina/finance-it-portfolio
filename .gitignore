@@ -224,3 +224,10 @@ config.py
 **/config.py
 .env
 .env.*
+
+
+# Generated synthetic workbooks for the bank-statement-automation demo
+bank-statement-automation/test-data/BANK1/source/*.xlsx
+bank-statement-automation/test-data/BANK1/output/*.xlsx
+bank-statement-automation/test-data/BANK2/source/*.xlsx
+bank-statement-automation/test-data/BANK2/output/*.xlsx

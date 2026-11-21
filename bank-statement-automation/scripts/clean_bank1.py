@@ -5,9 +5,9 @@ from datetime import date
 from openpyxl import load_workbook
 from openpyxl.cell.cell import MergedCell
 
-ROOT = Path(__file__).resolve().parent
-SOURCE_FOLDER = ROOT / "BANK1" / "source"
-OUTPUT_FOLDER = ROOT / "BANK1" / "output"
+ROOT = Path(__file__).resolve().parent.parent
+SOURCE_FOLDER = ROOT / "test-data" / "BANK1" / "source"
+OUTPUT_FOLDER = ROOT / "test-data" / "BANK1" / "output"
 OUTPUT_PREFIX = "BANK1_cleaned_"
 
 

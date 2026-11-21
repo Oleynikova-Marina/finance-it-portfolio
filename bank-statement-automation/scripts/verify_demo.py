@@ -6,15 +6,16 @@ from zipfile import ZipFile
 
 from openpyxl import load_workbook
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
+TEST_DATA = ROOT / "test-data"
 CASES = {
     "BANK1": {
-        "source": ROOT / "BANK1" / "source" / "BANK1_statement_14.11.2026.xlsx",
-        "output": ROOT / "BANK1" / "output" / "BANK1_cleaned_14.11.2026.xlsx",
+        "source": TEST_DATA / "BANK1" / "source" / "BANK1_statement_14.11.2026.xlsx",
+        "output": TEST_DATA / "BANK1" / "output" / "BANK1_cleaned_14.11.2026.xlsx",
     },
     "BANK2": {
-        "source": ROOT / "BANK2" / "source" / "BANK2_statement_14.11.2026.xlsx",
-        "output": ROOT / "BANK2" / "output" / "BANK2_cleaned_14.11.2026.xlsx",
+        "source": TEST_DATA / "BANK2" / "source" / "BANK2_statement_14.11.2026.xlsx",
+        "output": TEST_DATA / "BANK2" / "output" / "BANK2_cleaned_14.11.2026.xlsx",
     },
 }
 
@@ -193,8 +194,8 @@ def write_report(case, checks):
         "result": "PASS" if all(checks.values()) else "FAIL",
         "checks": checks,
     }
-    folder = ROOT / case
-    folder.mkdir(exist_ok=True)
+    folder = TEST_DATA / case
+    folder.mkdir(parents=True, exist_ok=True)
     (folder / "qa_report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -229,7 +230,7 @@ def main():
         "overall_total": total,
         "overall_result": "PASS" if passed == total else "FAIL",
     }
-    (ROOT / "qa_summary.json").write_text(
+    (TEST_DATA / "qa_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
