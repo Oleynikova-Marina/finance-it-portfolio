@@ -12,14 +12,14 @@ DATA_START_ROW = 3
 NUMBER_COLUMNS = (10, 12)
 HIDDEN_COLUMNS = (3, 11, 13)
 GROUP_COLUMN = 2
-RS_CITY_COLUMN = 14  # N — поле «рс», из которого берётся название города
+RS_CITY_COLUMN = 14  # N — столбец «Город», из которого берётся название города
 
 # Более тёмный терракотовый оттенок
 DARK_TERRACOTTA = "8B3F2F"
 
 # Дополнительный блок дашборда. Для отключения установите False.
 ENABLE_TREEMAP_DASHBOARD = False
-TREEMAP_RС_COLUMN = 14       # N — столбец «рс»
+TREEMAP_RС_COLUMN = 14       # N — столбец «Город»
 TREEMAP_AMOUNT_COLUMN = 12   # L — столбец с суммой
 TREEMAP_DATA_START_ROW = DATA_START_ROW
 TREEMAP_LEVELS = 5
@@ -74,7 +74,7 @@ def sort_key(value):
 
 
 def clean_rs_city(value):
-    """Нормализует город из поля рс: удаляет служебные маркеры ОБЩИЙ и СОСЕНКИ."""
+    """Нормализует название города: удаляет служебные маркеры ОБЩИЙ и СОСЕНКИ."""
     if value is None:
         return ""
     import re
@@ -121,7 +121,7 @@ def make_treemap_dashboard(workbook, data_ws):
 
     if not grouped:
         dash.merge_cells(start_row=3, start_column=1, end_row=4, end_column=TREEMAP_GRID_COLUMNS)
-        cell = dash.cell(3, 1, "Нет данных для построения диаграммы: проверьте столбцы N (рс) и L (сумма).")
+        cell = dash.cell(3, 1, "Нет данных для построения диаграммы: проверьте столбцы N (Город) и L (сумма).")
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
         cell.font = Font(name="Times New Roman", size=12, color="666666")
         return
@@ -348,7 +348,7 @@ def process_file(source_path, target_path):
             if not isinstance(cell, MergedCell):
                 cell.value = to_number(cell.value)
 
-    # 2. Очистить названия городов в столбце «рс» от служебных маркеров.
+    # 2. Очистить названия городов в столбце «Город» от служебных маркеров.
     for row_idx in range(DATA_START_ROW, ws.max_row + 1):
         cell = ws.cell(row=row_idx, column=RS_CITY_COLUMN)
         if not isinstance(cell, MergedCell) and cell.value is not None:
