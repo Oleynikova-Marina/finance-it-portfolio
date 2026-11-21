@@ -81,7 +81,7 @@ Python · openpyxl · Excel COM · pywin32 · Excel XLSX/XLSM
 
 ## Материалы проекта
 
-- [Архитектура решения](../architecture.md)
+- [Архитектура решения](../architecture_text.md)
 - [Алгоритм и технические решения](algorithm.md)
 - [Бизнес-процесс](business-process.md)
 - [Подробный отчёт о тестировании](test-results.md)
