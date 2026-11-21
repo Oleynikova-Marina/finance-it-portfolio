@@ -59,7 +59,7 @@
   <!-- Группировка и сопоставление -->
   <rect class="box purple" x="570" y="685" width="660" height="145"/>
   <text class="head" x="900" y="740" text-anchor="middle">Группировка задолженности</text>
-  <text class="body" x="900" y="790" text-anchor="middle">Юрлицо · дата оплаты по плану · расчётный счёт</text>
+  <text class="body" x="900" y="790" text-anchor="middle">Юрлицо · дата оплаты по плану · город</text>
   <path class="arrow" d="M900 615 V685"/>
 
   <rect class="box green" x="520" y="875" width="760" height="125"/>
